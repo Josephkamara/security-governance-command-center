@@ -1,0 +1,94 @@
+:root {
+  --navy: #0b3d5c;
+  --navy-deep: #072c42;
+  --teal: #0f6c6c;
+  --teal-soft: #e7f3f3;
+  --ink: #1c2430;
+  --muted: #5b6775;
+  --line: #d7dee6;
+  --paper: #f4f7f8;
+  --card: #ffffff;
+  --green: #0f6b4c;
+  --green-bg: #e5f4ee;
+  --amber: #8a5a00;
+  --amber-bg: #fff3d6;
+  --red: #9b1c2c;
+  --red-bg: #f8e4e7;
+  --blue: #0b4f8a;
+  --blue-bg: #e4eef8;
+  --gray-bg: #e8edf2;
+  --shadow: 0 1px 2px rgba(12, 32, 48, 0.06), 0 8px 24px rgba(12, 32, 48, 0.06);
+  --radius: 12px;
+  --sans: 'Source Sans 3', 'Segoe UI', sans-serif;
+  --serif: 'Source Serif 4', Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.55;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--teal);
+}
+
+a:hover {
+  color: var(--navy);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  color: var(--navy);
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 1.35rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+}
+
+p {
+  margin: 0 0 0.85rem;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid #2aa3a3;
+  outline-offset: 2px;
+}
