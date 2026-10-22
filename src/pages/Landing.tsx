@@ -5,6 +5,15 @@ import trustShot from '../../docs/screenshots/04-client-trust.png';
 import vendorShot from '../../docs/screenshots/05-vendor-risk.png';
 import './Landing.css';
 
+const coverage = [
+  { area: 'Governance & compliance', to: '/controls', page: 'Controls & testing' },
+  { area: 'Customer security', to: '/client-trust', page: 'Client questionnaires' },
+  { area: 'Vendor risk', to: '/vendor-risk', page: 'Vendors' },
+  { area: 'Enterprise partnership', to: '/enterprise-standards', page: 'Enterprise standards' },
+  { area: 'Risk programs', to: '/dashboard?view=register', page: 'Risk register' },
+  { area: 'Executive reporting & stakeholders', to: '/dashboard?view=stakeholders', page: 'Leadership dashboard' },
+];
+
 const cards = [
   {
     to: '/dashboard?tour=1',
@@ -71,6 +80,21 @@ export default function Landing() {
               Start the 3-minute tour
             </Link>
           </p>
+        </section>
+
+        <section className="landing-coverage" aria-label="Coverage">
+          <h3>Coverage</h3>
+          <p>Six areas. Each one has a working screen.</p>
+          <ul>
+            {coverage.map((item) => (
+              <li key={item.area}>
+                <Link to={item.to}>
+                  <strong>{item.area}</strong>
+                  <span>{item.page}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <div className="landing-door-grid">

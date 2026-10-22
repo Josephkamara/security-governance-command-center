@@ -41,14 +41,15 @@ Primary nav:
 
 | Route | Screen | Contents |
 | --- | --- | --- |
-| `/#/` | Overview | Hero line, Start the 3-minute tour, four cards |
-| `/#/dashboard` | Leadership dashboard | Status line, decisions needed, indicators, collapsible thresholds and risk register |
+| `/#/` | Overview | Hero line, tour button, coverage strip, four cards |
+| `/#/dashboard` | Leadership dashboard | Status, decisions, indicators, stakeholder map, collapsible thresholds and register |
 | `/#/controls` | Controls & testing | One control mapped across six frameworks, plus SOX testing |
 | `/#/vendor-risk` | Vendors | 4-tier model, inherent-risk calculator, intake, SOC checklist |
-| `/#/client-trust` | Client security questionnaires | SIG / HECVAT library, SLA tracker, intake |
-| `/#/about` | About | Background, first-90-days roadmap, enterprise standards alignment |
+| `/#/client-trust` | Client questionnaires | SIG / HECVAT library, SLA tracker, intake |
+| `/#/enterprise-standards` | Enterprise standards | Forum charter, RACI, standards crosswalk |
+| `/#/about` | About | Background and first-90-days roadmap |
 
-Older routes still resolve: `/#/sox` opens Controls & testing on the SOX tab, `/#/risk-register` opens the dashboard register, `/#/parent-alignment` and `/#/30-60-90` stay available from About.
+Older routes still resolve: `/#/sox` opens Controls & testing on the SOX tab, `/#/risk-register` opens the dashboard register, `/#/parent-alignment` redirects to Enterprise standards, `/#/30-60-90` stays available from About.
 
 ## 3-minute tour
 

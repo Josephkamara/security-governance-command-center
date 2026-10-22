@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import RiskRegister from './RiskRegister';
 import SampleBanner from '../components/SampleBanner';
 import StatusBadge from '../components/StatusBadge';
 import Term from '../components/Term';
 import { dashboardKris, kriThresholds, risks } from '../data/risks';
+import { operatingRhythm, stakeholders } from '../data/stakeholders';
 
 const months = ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
 
@@ -29,13 +30,15 @@ export default function Dashboard() {
     (risk) => risk.status !== 'Closed' && risk.category === 'Vendor' && /overdue|past/i.test(risk.title),
   );
   const decisionCount = Math.max(red.length, decisions.length);
+  const [params] = useSearchParams();
 
   useEffect(() => {
-    if (window.location.hash === '#register') {
-      const panel = document.getElementById('register');
-      if (panel instanceof HTMLDetailsElement) panel.open = true;
-    }
-  }, []);
+    const view = params.get('view') || window.location.hash.replace('#', '');
+    if (view !== 'register' && view !== 'stakeholders') return;
+    const panel = document.getElementById(view);
+    if (panel instanceof HTMLDetailsElement) panel.open = true;
+    panel?.scrollIntoView({ block: 'start' });
+  }, [params]);
 
   return (
     <article className="dashboard-page">
@@ -112,6 +115,44 @@ export default function Dashboard() {
           ))}
         </div>
         <p className="validate-note">Thresholds and owners are a sample operating set, not a live report.</p>
+      </section>
+
+      <section id="stakeholders" className="card">
+        <div className="card-header">
+          <h2>Stakeholder map</h2>
+          <p className="pill">Sample operating set</p>
+        </div>
+        <p className="operating-rhythm">
+          <strong>Operating rhythm.</strong> {operatingRhythm}
+        </p>
+        <div className="stakeholder-grid">
+          {stakeholders.map((item) => (
+            <article key={item.role} className="stakeholder-card">
+              <h3>{item.role}</h3>
+              <dl>
+                <div>
+                  <dt>Needs from the program</dt>
+                  <dd>{item.needs}</dd>
+                </div>
+                <div>
+                  <dt>Cadence</dt>
+                  <dd>{item.cadence}</dd>
+                </div>
+                <div>
+                  <dt>Format</dt>
+                  <dd>{item.format}</dd>
+                </div>
+                <div>
+                  <dt>Gives back</dt>
+                  <dd>{item.gives}</dd>
+                </div>
+              </dl>
+            </article>
+          ))}
+        </div>
+        <p className="validate-note">
+          Roles, cadence, and formats are illustrative fictional sample data, not a live RACI.
+        </p>
       </section>
 
       <div className="toolbar no-print">

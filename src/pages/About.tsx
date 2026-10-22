@@ -9,7 +9,7 @@ const links = [
   { to: '/controls', label: 'Controls & testing', hook: 'One test mapped across several public frameworks, plus the SOX exception path.' },
   { to: '/vendor-risk', label: 'Vendors', hook: 'A four-tier model and inherent-risk score. The tier sets the work.' },
   { to: '/client-trust', label: 'Client security questionnaires', hook: 'A reusable answer library and SLA view for standard security reviews.' },
-  { to: '/parent-alignment', label: 'Enterprise standards alignment', hook: 'A RACI that separates who owns the standard from who operates it.' },
+  { to: '/enterprise-standards', label: 'Enterprise standards alignment', hook: 'A RACI that separates who owns the standard from who operates it.' },
   { to: '/30-60-90', label: 'First-90-days roadmap', hook: 'Map the current state, stand up the basics, then report.' },
 ];
 

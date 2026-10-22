@@ -6,7 +6,8 @@ const links = [
   { to: '/dashboard', label: 'Leadership dashboard' },
   { to: '/controls', label: 'Controls & testing' },
   { to: '/vendor-risk', label: 'Vendors' },
-  { to: '/client-trust', label: 'Client security questionnaires' },
+  { to: '/client-trust', label: 'Client questionnaires' },
+  { to: '/enterprise-standards', label: 'Enterprise standards' },
   { to: '/about', label: 'About' },
 ];
 

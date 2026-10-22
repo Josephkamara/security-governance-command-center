@@ -253,6 +253,45 @@
   display: block;
 }
 
+.operating-rhythm {
+  margin: 0 0 16px;
+}
+
+.stakeholder-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.stakeholder-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.stakeholder-card h3 {
+  margin: 0 0 10px;
+}
+
+.stakeholder-card dl {
+  margin: 0;
+}
+
+.stakeholder-card dl > div {
+  margin-bottom: 8px;
+}
+
+.stakeholder-card dt {
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 0.82rem;
+}
+
+.stakeholder-card dd {
+  margin: 2px 0 0;
+}
+
 .expander {
   padding: 16px 18px;
 }
@@ -807,7 +846,8 @@ label {
   .split,
   .principle-grid,
   .phase-grid,
-  .kri-grid {
+  .kri-grid,
+  .stakeholder-grid {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -878,8 +918,13 @@ label {
   }
 
   .chip-row,
-  .playbook {
+  .playbook,
+  .stakeholder-grid {
     gap: 10px;
+  }
+
+  .stakeholder-grid {
+    grid-template-columns: 1fr;
   }
 }
 

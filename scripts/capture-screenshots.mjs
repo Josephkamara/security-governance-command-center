@@ -12,7 +12,7 @@ const pages = [
   { path: '#/client-trust', file: '04-client-trust.png' },
   { path: '#/vendor-risk', file: '05-vendor-risk.png' },
   { path: '#/dashboard#register', file: '06-risk-register.png' },
-  { path: '#/parent-alignment', file: '07-parent-alignment.png' },
+  { path: '#/enterprise-standards', file: '07-parent-alignment.png' },
   { path: '#/30-60-90', file: '08-30-60-90.png' },
   { path: '#/about', file: '09-about.png' },
 ];

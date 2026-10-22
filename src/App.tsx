@@ -27,7 +27,8 @@ function Workspace() {
           <Route path="/client-trust" element={<ClientSecurityTrustCenter />} />
           <Route path="/vendor-risk" element={<VendorRisk />} />
           <Route path="/risk-register" element={<Navigate to="/dashboard#register" replace />} />
-          <Route path="/parent-alignment" element={<EnterpriseAlignment />} />
+          <Route path="/enterprise-standards" element={<EnterpriseAlignment />} />
+          <Route path="/parent-alignment" element={<Navigate to="/enterprise-standards" replace />} />
           <Route path="/30-60-90" element={<ThirtyPlan />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
