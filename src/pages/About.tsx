@@ -10,7 +10,7 @@ const links = [
   { to: '/vendor-risk', label: 'Vendor risk', hook: 'A four-tier model and inherent-risk score, including fieldwork supported by security ratings such as BitSight.' },
   { to: '/risk-register', label: 'Risk register', hook: 'Findings stay visible when they have an owner, a score, and a close date.' },
   { to: '/parent-alignment', label: 'Parent alignment', hook: 'A RACI that separates who owns the standard from who operates it.' },
-  { to: '/', label: 'Executive dashboard', hook: 'Eight KRIs with targets and trends on one printable page.' },
+  { to: '/dashboard', label: 'Executive dashboard', hook: 'Eight KRIs with targets and trends on one printable page.' },
   { to: '/30-60-90', label: '30-60-90 plan', hook: 'Map the current state, stand up the basics, then report.' },
 ];
 

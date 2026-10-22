@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const links = [
-  { to: '/', label: 'Dashboard' },
+  { to: '/', label: 'Overview' },
+  { to: '/dashboard', label: 'Dashboard' },
   { to: '/controls', label: 'Control framework' },
   { to: '/sox', label: 'SOX ITGC' },
   { to: '/client-trust', label: 'Client trust' },

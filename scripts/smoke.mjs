@@ -19,8 +19,19 @@ async function check(name, fn) {
   }
 }
 
-await check('dashboard heading', async () => {
+await check('landing heading', async () => {
   await page.goto(`${base}/#/`, { waitUntil: 'networkidle0' });
+  const text = await page.$eval('h1', (el) => el.textContent);
+  if (!text.includes('Joseph Kamara')) throw new Error(text);
+  const html = await page.content();
+  if (!html.includes('healthcare services organization')) {
+    throw new Error('expected healthcare services wording');
+  }
+  if (!html.includes('Judgment call')) throw new Error('expected case-study judgment');
+});
+
+await check('dashboard heading', async () => {
+  await page.goto(`${base}/#/dashboard`, { waitUntil: 'networkidle0' });
   const text = await page.$eval('h1', (el) => el.textContent);
   if (!text.includes('One page for leadership')) throw new Error(text);
 });

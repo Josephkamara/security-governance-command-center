@@ -22,7 +22,7 @@ npm run build    # writes static files to dist/
 npm run preview  # serves dist/ on the same port
 ```
 
-There is no backend and no secrets. Hash routing (`/#/controls`) keeps GitHub Pages and other static hosts simple.
+There is no backend and no secrets. Hash routing keeps GitHub Pages simple. The Pages root (`/#/`) is the case-study landing page. The interactive workspace starts at `/#/dashboard`.
 
 ## Publish to GitHub Pages
 
@@ -39,7 +39,8 @@ Do not copy private source documents or notes.
 
 | Route | Module | Contents |
 | --- | --- | --- |
-| `/#/` | Executive dashboard | One page with 8 KRIs, trends, top risks, and a printable board summary |
+| `/#/` | Landing / case study | Portfolio-style overview, judgment, and module screenshots |
+| `/#/dashboard` | Executive dashboard | One page with 8 KRIs, trends, top risks, and a printable board summary |
 | `/#/controls` | Unified control framework | One control, one owner, one evidence set mapped across six frameworks |
 | `/#/sox` | SOX ITGC tracker | Test cycle, evidence requests, exceptions, Scope-Impact-Evidence-Communicate-Close |
 | `/#/client-trust` | Client security trust center | SIG Lite / HECVAT library, SLA tracker, due-diligence intake |
@@ -48,6 +49,12 @@ Do not copy private source documents or notes.
 | `/#/parent-alignment` | Parent-enterprise alignment | Forum charter, RACI, standards crosswalk with Parent Enterprise Security |
 | `/#/30-60-90` | 30-60-90 plan | Map current state, stand up the basics, report and plan the next year |
 | `/#/about` | About Joseph | How the modules relate to his experience, without employer names |
+
+## Landing page
+
+The first screen is a case-study overview in the same style as [josephkamara.github.io/audit-defense-portfolio](https://josephkamara.github.io/audit-defense-portfolio/): navy and gold, Georgia body type, scenario / frameworks / artifacts / takeaway, then constraint, options, tradeoff, and judgment. It links into the interactive workspace and shows the module screenshots.
+
+![Case-study landing page](docs/screenshots/00-landing.png)
 
 ## Module walkthrough
 

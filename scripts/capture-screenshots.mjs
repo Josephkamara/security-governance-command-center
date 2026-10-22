@@ -5,7 +5,8 @@ const base = 'http://127.0.0.1:4521/security-governance-command-center';
 const outDir = new URL('../docs/screenshots/', import.meta.url);
 
 const pages = [
-  { path: '#/', file: '01-dashboard.png' },
+  { path: '#/', file: '00-landing.png' },
+  { path: '#/dashboard', file: '01-dashboard.png' },
   { path: '#/controls', file: '02-controls.png' },
   { path: '#/sox', file: '03-sox.png' },
   { path: '#/client-trust', file: '04-client-trust.png' },
@@ -40,7 +41,7 @@ for (const item of pages) {
 }
 
 await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2 });
-await page.goto(`${base}/#/`, { waitUntil: 'networkidle0' });
+await page.goto(`${base}/#/dashboard`, { waitUntil: 'networkidle0' });
 await page.waitForSelector('h1');
 await page.click('.nav-toggle');
 await new Promise((resolve) => setTimeout(resolve, 300));
