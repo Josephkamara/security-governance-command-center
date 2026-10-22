@@ -1,10 +1,10 @@
 .landing {
   min-height: 100vh;
   margin: 0;
-  background: #f4f6f8;
-  color: #2c3e50;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 17px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
   line-height: 1.65;
 }
 
@@ -12,7 +12,7 @@
   position: absolute;
   left: 12px;
   top: -40px;
-  background: #002147;
+  background: var(--navy);
   color: #fff;
   padding: 8px 12px;
   z-index: 20;
@@ -23,7 +23,7 @@
 }
 
 .landing-header {
-  background: #002147;
+  background: linear-gradient(135deg, var(--navy-deep), var(--navy) 55%, var(--teal));
   color: #fff;
   padding: 48px 24px;
   text-align: center;
@@ -31,17 +31,19 @@
 
 .landing-header h1 {
   margin: 0 0 8px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 2em;
-  font-weight: 700;
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  font-weight: 600;
   color: #fff;
 }
 
 .landing-header p {
   margin: 0;
-  color: #c5a55a;
-  font-family: Arial, Helvetica, sans-serif;
-  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--sans);
+  letter-spacing: 0.08em;
+  font-size: 0.82rem;
+  font-weight: 700;
   line-height: 1.45;
 }
 
@@ -51,8 +53,8 @@
 
 .landing-header nav a {
   display: inline-block;
-  color: #c5a55a;
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--sans);
   text-decoration: none;
   margin: 6px 10px;
   font-size: 0.9em;
@@ -63,28 +65,35 @@
 }
 
 .landing main {
-  max-width: 780px;
+  width: min(1240px, 100%);
   margin: 0 auto;
-  padding: 40px 24px 80px;
+  padding: 40px 20px 80px;
 }
 
 .landing h2,
 .landing h3 {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #002147;
-  line-height: 1.3;
+  font-family: var(--serif);
+  color: var(--navy);
+  line-height: 1.25;
+  text-wrap: balance;
 }
 
 .landing h2 {
   font-size: 1.35rem;
-  border-bottom: 2px solid #c5a55a;
+  border-bottom: 2px solid var(--teal);
   padding-bottom: 6px;
   margin: 2.25em 0 0.7em;
 }
 
 .landing h3 {
-  font-size: 1.05em;
+  font-size: 1.05rem;
   margin: 1.5em 0 0.5em;
+}
+
+.landing p,
+.landing li {
+  max-width: none;
+  text-wrap: wrap;
 }
 
 .landing p {
@@ -92,31 +101,33 @@
 }
 
 .landing a {
-  color: #002147;
+  color: var(--teal);
 }
 
 .landing a:hover {
-  color: #c5a55a;
+  color: var(--navy);
 }
 
 .landing-intro {
-  font-size: 1.05em;
-  line-height: 1.6;
-  margin-bottom: 40px;
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  margin-bottom: 28px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   padding: 24px 28px;
 }
 
 .landing-intro strong {
-  color: #002147;
+  color: var(--navy);
 }
 
 .landing-card {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   padding: 24px 28px;
   margin: 20px 0;
 }
@@ -133,61 +144,60 @@
 }
 
 .landing-featured {
-  border-top: 4px solid #c5a55a;
+  border-top: 4px solid var(--teal);
 }
 
 .landing-shows {
   font-style: italic;
-  color: #555;
+  color: var(--muted);
   margin-bottom: 14px;
 }
 
 .landing-type {
   display: inline-block;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.7em;
-  color: #fff;
-  background: #7a8a99;
-  border-radius: 3px;
-  padding: 2px 8px;
-  margin-left: 0;
-  vertical-align: middle;
-  font-weight: 400;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--navy);
+  background: var(--teal-soft);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-weight: 700;
 }
 
 .landing-tag {
   display: inline-block;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.75em;
-  color: #002147;
-  background: #f4f6f8;
-  border: 1px solid #c5a55a;
-  border-radius: 12px;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--navy);
+  background: var(--teal-soft);
+  border: 1px solid var(--teal);
+  border-radius: 999px;
   padding: 3px 12px;
   margin: 0 8px 8px 0;
 }
 
 .landing-card a {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--sans);
   font-weight: 700;
   text-decoration: none;
-  border-bottom: 2px solid #c5a55a;
+  border-bottom: 2px solid var(--teal);
 }
 
 .landing-card a:hover {
-  color: #c5a55a;
+  color: var(--navy);
 }
 
 .landing-fictional {
   font-size: 0.85em;
-  color: #7a8a99;
+  color: var(--muted);
   margin: 1.25em 0;
   font-style: italic;
 }
 
 .landing-summary {
-  background: #f4f6f8;
-  border-left: 4px solid #c5a55a;
+  background: var(--teal-soft);
+  border-left: 4px solid var(--teal);
+  border-radius: var(--radius);
   padding: 20px 24px;
   margin: 20px 0 32px;
 }
@@ -210,10 +220,10 @@
 
 .landing-cta {
   display: inline-block;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--sans);
   font-weight: 700;
   text-decoration: none;
-  border-bottom: 2px solid #c5a55a;
+  border-bottom: 2px solid var(--teal);
   margin: 8px 0 24px;
 }
 
@@ -229,44 +239,45 @@
   max-height: 280px;
   object-fit: cover;
   object-position: top center;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
 }
 
 .landing-updated {
   text-align: right;
   font-size: 0.8em;
-  color: #7a8a99;
+  color: var(--muted);
   margin-top: 40px;
 }
 
 .landing-footer {
   text-align: center;
   padding: 32px 24px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--sans);
   font-size: 0.85em;
-  color: #7a8a99;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
 }
 
 .landing-footer a {
-  color: #002147;
+  color: var(--teal);
 }
 
-@media (max-width: 600px) {
+.landing-footer a:hover {
+  color: var(--navy);
+}
+
+@media (max-width: 720px) {
   .landing {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .landing-header {
     padding: 32px 16px;
   }
 
-  .landing-header h1 {
-    font-size: 1.75em;
-  }
-
   .landing main {
-    padding: 24px 16px 60px;
+    padding: 28px 16px 60px;
   }
 
   .landing-intro,

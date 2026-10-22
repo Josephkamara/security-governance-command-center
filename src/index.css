@@ -75,6 +75,15 @@ h3 {
   font-size: 1.05rem;
 }
 
+p,
+li,
+dd,
+.page-lede,
+.validate-note {
+  max-width: none;
+  text-wrap: wrap;
+}
+
 p {
   margin: 0 0 0.85rem;
 }
