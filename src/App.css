@@ -253,6 +253,11 @@
   display: block;
 }
 
+#stakeholders,
+#register {
+  scroll-margin-top: 96px;
+}
+
 .operating-rhythm {
   margin: 0 0 16px;
 }
