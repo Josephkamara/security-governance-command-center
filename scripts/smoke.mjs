@@ -81,7 +81,9 @@ await check('vendor scorer moves to Tier 1', async () => {
 });
 
 await check('PHI-at-scale floors to Tier 1', async () => {
+  await page.goto(`${base}/#/about`, { waitUntil: 'networkidle0' });
   await page.goto(`${base}/#/vendor-risk`, { waitUntil: 'networkidle0' });
+  await page.reload({ waitUntil: 'networkidle0' });
   const radios = await page.$$('input[type="radio"]');
   await radios[2].click();
   const result = await page.$eval('.score-result', (el) => el.textContent);

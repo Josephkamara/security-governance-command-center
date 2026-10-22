@@ -1,8 +1,21 @@
-import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { HashRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import TourBar from './components/TourBar';
 import { LINKEDIN_URL, REPO_URL } from './data/contacts';
 import './App.css';
+
+function ScrollToTop() {
+  const { pathname, search } = useLocation();
+
+  useEffect(() => {
+    const view = new URLSearchParams(search).get('view');
+    if (view === 'evidence' || view === 'register' || view === 'stakeholders') return;
+    window.scrollTo(0, 0);
+  }, [pathname, search]);
+
+  return null;
+}
 import About from './pages/About';
 import ClientSecurityTrustCenter from './pages/ClientSecurityTrustCenter';
 import ControlsAndTesting from './pages/ControlsAndTesting';
@@ -55,6 +68,7 @@ function Workspace() {
 export default function App() {
   return (
     <HashRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/*" element={<Workspace />} />
