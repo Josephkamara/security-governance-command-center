@@ -225,6 +225,10 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.split > * {
+  min-width: 0;
+}
+
 .principle-grid {
   grid-template-columns: repeat(2, 1fr);
 }
@@ -269,15 +273,25 @@
   font-size: 0.92rem;
 }
 
+.card,
+.split,
+.filters,
+.toolbar,
+.card-stack {
+  min-width: 0;
+}
+
 .table-wrap,
 .heatmap-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .table-wrap > table {
-  width: max(100%, 880px);
+  width: max(100%, 720px);
 }
 
 table {
