@@ -5,7 +5,7 @@ import RiskRegister from './RiskRegister';
 import SampleBanner from '../components/SampleBanner';
 import StatusBadge from '../components/StatusBadge';
 import Term from '../components/Term';
-import { dashboardKris, kriThresholds, risks } from '../data/risks';
+import { additionalKris, kriThresholds, risks, vitalKris } from '../data/risks';
 import { operatingRhythm, stakeholders } from '../data/stakeholders';
 
 const months = ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
@@ -24,8 +24,8 @@ function sparkPoints(history: number[]): string {
 }
 
 export default function Dashboard() {
-  const onTarget = dashboardKris.filter((kri) => kri.status === 'green').length;
-  const red = dashboardKris.filter((kri) => kri.status === 'red');
+  const onTarget = vitalKris.filter((kri) => kri.status === 'green').length;
+  const red = vitalKris.filter((kri) => kri.status === 'red');
   const decisions = risks.filter(
     (risk) => risk.status !== 'Closed' && risk.category === 'Vendor' && /overdue|past/i.test(risk.title),
   );
@@ -44,41 +44,47 @@ export default function Dashboard() {
     <article className="dashboard-page">
       <div className="print-masthead">
         <p>Security Governance Command Center</p>
-        <p>Board-style summary | October 2026 | Prepared by Joseph Kamara</p>
+        <p>Leadership summary | October 2026 | Sample data</p>
       </div>
 
       <PageHeader
         title="Leadership dashboard"
         lede={
           <>
-            Numbers below are{' '}
+            Six numbers a healthcare security leader can act on. Each is a{' '}
             <Term
-              term="KRIs"
-              definition="Key risk indicators: a short list of numbers watched against a target, with a trend."
+              term="KRI"
+              definition="Key risk indicator: a short list of numbers watched against a target, with a trend and an owner."
             />{' '}
-            (key risk indicators).
+            with a target, a six-month trend, and a named owner.
           </>
         }
       />
 
       <p className="status-line" role="status">
-        {onTarget} of {dashboardKris.length} indicators on target; {decisionCount}{' '}
+        {onTarget} of {vitalKris.length} vital indicators on target; {decisionCount}{' '}
         {decisionCount === 1 ? 'decision' : 'decisions'} needed.
       </p>
       <SampleBanner />
 
-      <section className="card">
+      <section className="card decision-card">
         <div className="card-header">
-          <h2>Decisions needed</h2>
+          <h2>Decision needed</h2>
           <p className="pill">{decisionCount} now</p>
         </div>
         {decisions.length ? (
           <ul className="brief">
             {decisions.map((risk) => (
               <li key={risk.id}>
-                <strong>{risk.title}.</strong> Score {risk.likelihood * risk.impact} · Owner {risk.owner} · Due{' '}
-                {risk.due}. Confirm the dated review so the overdue Tier 1 vendor does not linger into year-end
-                opinions.
+                <p className="decision-ask">
+                  Approve a dated SOC 2 Type II review for the overdue Tier 1 processing vendor by {risk.due},
+                  or accept the residual risk in writing.
+                </p>
+                <p>
+                  {risk.title}. Score {risk.likelihood * risk.impact} · Owner {risk.owner} · Due {risk.due}.
+                  This is the only overdue Tier 1 vendor. Year-end opinions will ask for a current report or a
+                  signed acceptance.
+                </p>
               </li>
             ))}
           </ul>
@@ -90,26 +96,39 @@ export default function Dashboard() {
 
       <section className="card">
         <div className="card-header">
-          <h2>Indicators</h2>
+          <h2>Vital indicators</h2>
           <p className="pill">
-            {onTarget} on target · {dashboardKris.length - onTarget} off target
+            {onTarget} on target · {vitalKris.length - onTarget} off target
           </p>
         </div>
-        <div className="kri-grid">
-          {dashboardKris.map((kri) => (
+        <div className="kri-grid kri-grid-vital">
+          {vitalKris.map((kri) => (
             <div key={kri.id} className={`kri-card tone-${kri.status}`}>
               <div className="kri-top">
                 <h3>{kri.name}</h3>
                 <StatusBadge label={kri.status} tone={kri.status} />
               </div>
               <p className="kri-value">{kri.value}</p>
-              <p className="muted">Target: {kri.target}</p>
+              <dl className="kri-meta">
+                <div>
+                  <dt>Target</dt>
+                  <dd>{kri.target}</dd>
+                </div>
+                <div>
+                  <dt>Trend</dt>
+                  <dd>{kri.trendLabel}</dd>
+                </div>
+                <div>
+                  <dt>Owner</dt>
+                  <dd>{kri.owner}</dd>
+                </div>
+              </dl>
               <p className="kri-def">{kri.definition}</p>
               <svg className="spark" viewBox="0 0 100 32" aria-hidden="true">
                 <polyline fill="none" stroke="currentColor" strokeWidth="2" points={sparkPoints(kri.history)} />
               </svg>
               <p className="trend-label">
-                {months[0]} to {months[months.length - 1]} · {kri.trendLabel}
+                {months[0]} to {months[months.length - 1]}
               </p>
             </div>
           ))}
@@ -117,7 +136,37 @@ export default function Dashboard() {
         <p className="validate-note">Thresholds and owners are a sample operating set, not a live report.</p>
       </section>
 
-      <section id="stakeholders" className="card">
+      <details className="card expander no-print">
+        <summary>Additional indicators</summary>
+        <p>Useful for operators. Not required for the monthly leadership page.</p>
+        <div className="kri-grid kri-grid-extra">
+          {additionalKris.map((kri) => (
+            <div key={kri.id} className={`kri-card tone-${kri.status}`}>
+              <div className="kri-top">
+                <h3>{kri.name}</h3>
+                <StatusBadge label={kri.status} tone={kri.status} />
+              </div>
+              <p className="kri-value">{kri.value}</p>
+              <dl className="kri-meta">
+                <div>
+                  <dt>Target</dt>
+                  <dd>{kri.target}</dd>
+                </div>
+                <div>
+                  <dt>Trend</dt>
+                  <dd>{kri.trendLabel}</dd>
+                </div>
+                <div>
+                  <dt>Owner</dt>
+                  <dd>{kri.owner}</dd>
+                </div>
+              </dl>
+            </div>
+          ))}
+        </div>
+      </details>
+
+      <section id="stakeholders" className="card no-print">
         <div className="card-header">
           <h2>Stakeholder map</h2>
           <p className="pill">Sample operating set</p>
@@ -156,13 +205,13 @@ export default function Dashboard() {
       </section>
 
       <div className="toolbar no-print">
-        <p className="muted">Print this page for a board-style one-pager.</p>
+        <p className="muted">Print this page for a one-page leadership summary: status, the decision, and the six indicators.</p>
         <button type="button" className="btn btn-primary" onClick={() => window.print()}>
           Print summary
         </button>
       </div>
 
-      <details className="card expander">
+      <details className="card expander no-print">
         <summary>How thresholds are set</summary>
         <p>
           Green, amber, and red lines should match enterprise appetite and local contract clocks. They are
@@ -192,14 +241,14 @@ export default function Dashboard() {
         </div>
       </details>
 
-      <details id="register" className="card expander">
+      <details id="register" className="card expander no-print">
         <summary>Full risk register</summary>
         <p>
           Security, vendor, and client items in one scored list. This is the dashboard drill-down, not a
           separate program.
         </p>
         <RiskRegister embedded />
-        <p className="no-print">
+        <p>
           <Link to="/30-60-90">First-90-days roadmap</Link>
         </p>
       </details>

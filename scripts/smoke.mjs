@@ -28,6 +28,11 @@ await check('landing heading', async () => {
   if (!html.includes('One control set, one risk register, one page for leadership')) {
     throw new Error('expected value statement');
   }
+  if (html.includes('josefkamara.com')) throw new Error('personal site should not appear');
+  if (!html.includes('github.com/Josephkamara/security-governance-command-center')) {
+    throw new Error('expected GitHub repo URL');
+  }
+  if (!html.includes('Evidence automation')) throw new Error('expected evidence teaser');
 });
 
 await check('dashboard heading', async () => {
@@ -35,7 +40,8 @@ await check('dashboard heading', async () => {
   const text = await page.$eval('h1', (el) => el.textContent);
   if (!text.includes('Leadership dashboard')) throw new Error(text);
   const html = await page.content();
-  if (!html.includes('indicators on target')) throw new Error('expected computed status line');
+  if (!html.includes('vital indicators on target')) throw new Error('expected computed status line');
+  if (!html.includes('Approve a dated SOC 2 Type II review')) throw new Error('expected decision ask');
 });
 
 await check('control search filters to MFA', async () => {
@@ -70,6 +76,17 @@ await check('vendor scorer moves to Tier 1', async () => {
   }
   const result = await page.$eval('.score-result', (el) => el.textContent);
   if (!result.includes('Tier 1')) throw new Error(result);
+  if (!result.includes('Required review depth')) throw new Error('expected recommendation');
+  if (!result.includes('SOC 2 Type II')) throw new Error('expected Type II language');
+});
+
+await check('PHI-at-scale floors to Tier 1', async () => {
+  await page.goto(`${base}/#/vendor-risk`, { waitUntil: 'networkidle0' });
+  const radios = await page.$$('input[type="radio"]');
+  await radios[2].click();
+  const result = await page.$eval('.score-result', (el) => el.textContent);
+  if (!result.includes('Tier 1 Critical')) throw new Error(result);
+  if (!result.includes('PHI at scale')) throw new Error(result);
 });
 
 await check('about uses Joseph', async () => {
@@ -83,6 +100,8 @@ await check('about uses Joseph', async () => {
   if (!html.includes('First-90-days roadmap')) {
     throw new Error('expected roadmap link');
   }
+  if (!html.includes('Evidence automation')) throw new Error('expected evidence section');
+  if (html.includes('josefkamara.com')) throw new Error('personal site should not appear');
 });
 
 await browser.close();

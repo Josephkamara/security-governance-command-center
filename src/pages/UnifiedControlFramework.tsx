@@ -108,7 +108,20 @@ export default function UnifiedControlFramework({ embedded = false }: { embedded
           Showing {rows.length} of {controls.length} controls.
         </p>
         <div className="table-wrap">
-          <table>
+          <table className="control-matrix">
+            <colgroup>
+              <col className="col-control" />
+              <col className="col-fw" />
+              <col className="col-fw" />
+              <col className="col-fw" />
+              <col className="col-fw" />
+              <col className="col-fw" />
+              <col className="col-fw" />
+              <col className="col-owner" />
+              <col className="col-evidence" />
+              <col className="col-freq" />
+              <col className="col-status" />
+            </colgroup>
             <thead>
               <tr>
                 <th>Control</th>
@@ -127,9 +140,9 @@ export default function UnifiedControlFramework({ embedded = false }: { embedded
             <tbody>
               {rows.map((control) => (
                 <tr key={control.id}>
-                  <td>
-                    <strong>{control.id}</strong>
-                    <div>{control.title}</div>
+                  <td className="control-cell">
+                    <strong className="control-id">{control.id}</strong>
+                    <span className="control-title">{control.title}</span>
                   </td>
                   <td>{control.sox}</td>
                   <td>{control.soc2}</td>

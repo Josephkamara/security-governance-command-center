@@ -1,21 +1,30 @@
+import { useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import SampleBanner from '../components/SampleBanner';
 import Section from '../components/Section';
 import Term from '../components/Term';
+import { LINKEDIN_URL, REPO_URL } from '../data/contacts';
+import { evidenceConcept, sampleEvidenceRecord } from '../data/evidence';
 
 const links = [
-  { to: '/dashboard', label: 'Leadership dashboard', hook: 'A one-line status, the decision, then eight indicators with targets and trends.' },
+  { to: '/dashboard', label: 'Leadership dashboard', hook: 'A one-line status, one decision, then six vital indicators with target, trend, and owner.' },
   { to: '/controls', label: 'Controls & testing', hook: 'One test mapped across several public frameworks, plus the SOX exception path.' },
-  { to: '/vendor-risk', label: 'Vendors', hook: 'A four-tier model and inherent-risk score. The tier sets the work.' },
+  { to: '/vendor-risk', label: 'Vendors', hook: 'A four-tier model and a calculator that ends in a plain-language recommendation.' },
   { to: '/client-trust', label: 'Client security questionnaires', hook: 'A reusable answer library and SLA view for standard security reviews.' },
   { to: '/enterprise-standards', label: 'Enterprise standards alignment', hook: 'A RACI that separates who owns the standard from who operates it.' },
   { to: '/30-60-90', label: 'First-90-days roadmap', hook: 'Map the current state, stand up the basics, then report.' },
+  { to: '/about?view=evidence', label: 'Evidence automation', hook: 'An illustrative concept for a timestamped evidence locker mapped to controls.' },
 ];
 
 export default function About() {
   const [params] = useSearchParams();
   const closing = params.get('tour') === '4';
+
+  useEffect(() => {
+    if (params.get('view') !== 'evidence') return;
+    document.getElementById('evidence')?.scrollIntoView({ block: 'start' });
+  }, [params]);
 
   return (
     <article>
@@ -91,6 +100,66 @@ export default function About() {
       </Section>
 
       <Section
+        id="evidence"
+        title="Evidence automation"
+        validate="Illustrative concept only. No live API, locker, or past-employer tool is implied."
+      >
+        <p className="concept-label">{evidenceConcept.framing}</p>
+        <p>{evidenceConcept.idea}</p>
+        <ol className="plain-list">
+          {evidenceConcept.steps.map((step) => (
+            <li key={step}>{step}</li>
+          ))}
+        </ol>
+        <figure className="evidence-record">
+          <figcaption>Sample automated evidence record</figcaption>
+          <dl>
+            <div>
+              <dt>Record ID</dt>
+              <dd>{sampleEvidenceRecord.id}</dd>
+            </div>
+            <div>
+              <dt>Control</dt>
+              <dd>
+                {sampleEvidenceRecord.controlId} — {sampleEvidenceRecord.controlTitle}
+              </dd>
+            </div>
+            <div>
+              <dt>Source</dt>
+              <dd>{sampleEvidenceRecord.source}</dd>
+            </div>
+            <div>
+              <dt>Collected</dt>
+              <dd>{sampleEvidenceRecord.collectedAt}</dd>
+            </div>
+            <div>
+              <dt>Integrity</dt>
+              <dd>SHA-256 {sampleEvidenceRecord.sha256}</dd>
+            </div>
+            <div>
+              <dt>Mapped frameworks</dt>
+              <dd>
+                <ul>
+                  {sampleEvidenceRecord.frameworks.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+            <div>
+              <dt>Retention</dt>
+              <dd>{sampleEvidenceRecord.retention}</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd>{sampleEvidenceRecord.status}</dd>
+            </div>
+          </dl>
+          <p className="muted">{sampleEvidenceRecord.note}</p>
+        </figure>
+      </Section>
+
+      <Section
         title="Where to go next"
         validate="The modules are a sample layout, not a required template."
       >
@@ -112,7 +181,13 @@ export default function About() {
         <p>
           Joseph Kamara · CPA, CISA, CISSP
           <br />
-          <a href="https://www.linkedin.com/in/joseph-kamara">linkedin.com/in/joseph-kamara</a>
+          <a href={REPO_URL} target="_blank" rel="noreferrer">
+            github.com/Josephkamara/security-governance-command-center
+          </a>
+          <br />
+          <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+            linkedin.com/in/joseph-kamara
+          </a>
         </p>
       </Section>
     </article>

@@ -204,6 +204,60 @@
   margin-left: auto;
 }
 
+.tour-trace.is-highlighted {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-soft);
+}
+
+.concept-label {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.evidence-record {
+  margin: 16px 0 0;
+  padding: 16px 18px;
+  background: var(--teal-soft);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--teal);
+  border-radius: var(--radius);
+}
+
+.evidence-record figcaption {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--navy);
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.evidence-record dl {
+  margin: 0;
+}
+
+.evidence-record dl > div {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 8px 16px;
+  padding: 8px 0;
+  border-top: 1px solid rgba(11, 61, 92, 0.12);
+}
+
+.evidence-record dt {
+  margin: 0;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.evidence-record dd {
+  margin: 0;
+}
+
+.evidence-record ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
 .tour-trace .trace-map,
 .trace-map {
   display: grid;
@@ -254,8 +308,45 @@
 }
 
 #stakeholders,
-#register {
+#register,
+#evidence {
   scroll-margin-top: 96px;
+}
+
+.decision-ask {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--navy);
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.kri-meta {
+  display: grid;
+  gap: 6px;
+  margin: 8px 0 10px;
+}
+
+.kri-meta div {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.kri-meta dt {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.kri-meta dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.92rem;
 }
 
 .operating-rhythm {
@@ -425,6 +516,14 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
+.kri-grid-vital {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.kri-grid-extra {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .stat,
 .kri-card,
 .principle,
@@ -487,15 +586,76 @@ table {
 th,
 td {
   text-align: left;
-  padding: 9px 10px;
+  padding: 12px 12px;
   border-bottom: 1px solid var(--line);
   vertical-align: top;
+  line-height: 1.4;
 }
 
 th {
   background: #f0f5f7;
   color: var(--navy);
   font-weight: 600;
+  white-space: nowrap;
+}
+
+.control-matrix {
+  table-layout: fixed;
+  width: max(100%, 1120px);
+}
+
+.control-matrix .col-control {
+  width: 200px;
+}
+
+.control-matrix .col-fw {
+  width: 88px;
+}
+
+.control-matrix .col-owner {
+  width: 120px;
+}
+
+.control-matrix .col-evidence {
+  width: 170px;
+}
+
+.control-matrix .col-freq {
+  width: 100px;
+}
+
+.control-matrix .col-status {
+  width: 130px;
+}
+
+.control-cell {
+  padding-right: 16px;
+}
+
+.control-id {
+  display: block;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.control-title {
+  display: block;
+  margin-top: 4px;
+  line-height: 1.35;
+  overflow-wrap: break-word;
+}
+
+.tier-table .col-tier {
+  width: 120px;
+}
+
+.tier-table .col-reassess {
+  width: 140px;
+}
+
+.sox-table td:first-child,
+.finding-table td:first-child {
   white-space: nowrap;
 }
 
@@ -724,6 +884,45 @@ label {
   padding: 10px 12px;
 }
 
+.score-tier {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.floor-note {
+  margin: 0 0 12px;
+  color: var(--navy);
+}
+
+.recommend-list {
+  margin: 0;
+}
+
+.recommend-list > div {
+  margin-bottom: 10px;
+}
+
+.recommend-list dt {
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 0.82rem;
+}
+
+.recommend-list dd {
+  margin: 2px 0 0;
+}
+
+@media (min-width: 981px) {
+  .vendor-score-split .score-result {
+    position: sticky;
+    top: 88px;
+    align-self: start;
+  }
+}
+
 .radio {
   display: flex;
   gap: 8px;
@@ -852,6 +1051,8 @@ label {
   .principle-grid,
   .phase-grid,
   .kri-grid,
+  .kri-grid-vital,
+  .kri-grid-extra,
   .stakeholder-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -900,6 +1101,8 @@ label {
   .principle-grid,
   .phase-grid,
   .kri-grid,
+  .kri-grid-vital,
+  .kri-grid-extra,
   .toolbar {
     grid-template-columns: 1fr;
   }
@@ -930,6 +1133,12 @@ label {
 
   .stakeholder-grid {
     grid-template-columns: 1fr;
+  }
+
+  .evidence-record dl > div,
+  .kri-meta div {
+    grid-template-columns: 1fr;
+    gap: 2px;
   }
 }
 
@@ -968,8 +1177,9 @@ label {
     break-inside: avoid;
   }
 
-  .kri-grid {
-    grid-template-columns: repeat(4, 1fr);
+  .kri-grid,
+  .kri-grid-vital {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   a {

@@ -26,7 +26,7 @@ export default function SOXITGCTracker({ embedded = false }: { embedded?: boolea
           ))}
         </div>
         <div className="table-wrap">
-          <table>
+          <table className="sox-table">
             <thead>
               <tr>
                 <th>Test</th>
@@ -42,10 +42,12 @@ export default function SOXITGCTracker({ embedded = false }: { embedded?: boolea
             <tbody>
               {soxTests.map((test) => (
                 <tr key={test.id}>
-                  <td>{test.id}</td>
                   <td>
-                    {test.controlId}
-                    <div className="muted">{test.controlName}</div>
+                    <strong className="control-id">{test.id}</strong>
+                  </td>
+                  <td className="control-cell">
+                    <strong className="control-id">{test.controlId}</strong>
+                    <span className="control-title">{test.controlName}</span>
                   </td>
                   <td>{test.tester}</td>
                   <td>{test.population}</td>

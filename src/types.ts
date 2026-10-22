@@ -139,10 +139,26 @@ export interface Kri {
   definition: string;
   value: string;
   target: string;
+  owner: string;
+  vital: boolean;
   status: 'green' | 'amber' | 'red';
   trend: 'up' | 'down' | 'stable';
   trendLabel: string;
   history: number[];
+}
+
+export type VendorTierId = 1 | 2 | 3 | 4;
+
+export interface VendorRecommendation {
+  score: number;
+  scoreTier: VendorTierId;
+  tier: VendorTierId;
+  name: string;
+  floors: string[];
+  reviewDepth: string;
+  frequency: string;
+  nextStep: string;
+  summary: string;
 }
 
 export interface RaciRow {

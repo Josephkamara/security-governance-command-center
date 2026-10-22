@@ -6,27 +6,26 @@ import StatusBadge from '../components/StatusBadge';
 import Term from '../components/Term';
 import {
   intakeSteps,
+  recommendVendor,
   riskQuestions,
   socChecklist,
-  tierFromScore,
   vendorFindings,
   vendorTiers,
   vendors,
 } from '../data/vendors';
 
-export default function VendorRisk() {
-  const [scores, setScores] = useState<Record<string, number>>({
-    q1: 0,
-    q2: 0,
-    q3: 0,
-    q4: 0,
-    q5: 0,
-    q6: 0,
-  });
+const emptyScores: Record<string, number> = {
+  q1: 0,
+  q2: 0,
+  q3: 0,
+  q4: 0,
+  q5: 0,
+  q6: 0,
+};
 
-  const total = Object.values(scores).reduce((sum, value) => sum + value, 0);
-  const tier = tierFromScore(total);
-  const tierMeta = vendorTiers.find((item) => item.tier === tier);
+export default function VendorRisk() {
+  const [scores, setScores] = useState<Record<string, number>>(emptyScores);
+  const recommendation = recommendVendor(scores);
 
   return (
     <article>
@@ -52,7 +51,14 @@ export default function VendorRisk() {
         validate="Typical healthcare examples and diligence packages should be confirmed against the enterprise TPRM standard."
       >
         <div className="table-wrap">
-          <table>
+          <table className="tier-table">
+            <colgroup>
+              <col className="col-tier" />
+              <col className="col-examples" />
+              <col className="col-diligence" />
+              <col className="col-reassess" />
+              <col className="col-contract" />
+            </colgroup>
             <thead>
               <tr>
                 <th>Tier</th>
@@ -66,7 +72,7 @@ export default function VendorRisk() {
               {vendorTiers.map((item) => (
                 <tr key={item.tier}>
                   <td>
-                    <strong>
+                    <strong className="control-id">
                       {item.tier} {item.name}
                     </strong>
                   </td>
@@ -85,7 +91,7 @@ export default function VendorRisk() {
         title="Inherent risk scoring calculator"
         validate="Question weights and cut scores should match enterprise scoring if a TPRM tool already exists. Do not stand up a second system."
       >
-        <div className="split">
+        <div className="split vendor-score-split">
           <form className="score-form" onSubmit={(event) => event.preventDefault()}>
             {riskQuestions.map((question) => (
               <fieldset key={question.id}>
@@ -105,13 +111,31 @@ export default function VendorRisk() {
               </fieldset>
             ))}
           </form>
-          <aside className="score-result">
-            <p className="muted">Illustrative sample score</p>
-            <p className="kri-value">{total}</p>
-            <p>
-              Proposed tier: <strong>Tier {tier} {tierMeta?.name}</strong>
+          <aside className="score-result" aria-live="polite">
+            <p className="muted">Illustrative sample recommendation</p>
+            <p className="kri-value">{recommendation.score}</p>
+            <p className="score-tier">
+              Tier {recommendation.tier} {recommendation.name}
             </p>
-            <p>{tierMeta?.diligence}</p>
+            {recommendation.floors.length ? (
+              <p className="floor-note">{recommendation.floors.join('. ')}.</p>
+            ) : (
+              <p className="muted">Raw score {recommendation.score} maps directly to this tier.</p>
+            )}
+            <dl className="recommend-list">
+              <div>
+                <dt>Required review depth</dt>
+                <dd>{recommendation.reviewDepth}</dd>
+              </div>
+              <div>
+                <dt>Reassessment</dt>
+                <dd>{recommendation.frequency}</dd>
+              </div>
+              <div>
+                <dt>Next step</dt>
+                <dd>{recommendation.nextStep}</dd>
+              </div>
+            </dl>
           </aside>
         </div>
       </Section>
@@ -144,7 +168,7 @@ export default function VendorRisk() {
           ))}
         </ol>
         <div className="table-wrap">
-          <table>
+          <table className="vendor-register">
             <caption>Sample vendor register</caption>
             <thead>
               <tr>
@@ -161,7 +185,9 @@ export default function VendorRisk() {
             <tbody>
               {vendors.map((vendor) => (
                 <tr key={vendor.id}>
-                  <td>{vendor.name}</td>
+                  <td>
+                    <strong className="control-id">{vendor.name}</strong>
+                  </td>
                   <td>{vendor.service}</td>
                   <td>{vendor.tier}</td>
                   <td>{vendor.inherentScore}</td>
@@ -185,7 +211,7 @@ export default function VendorRisk() {
         validate="Aging and severity should roll into the single risk register, not live only in a vendor spreadsheet."
       >
         <div className="table-wrap">
-          <table>
+          <table className="finding-table">
             <thead>
               <tr>
                 <th>ID</th>
@@ -201,7 +227,9 @@ export default function VendorRisk() {
             <tbody>
               {vendorFindings.map((item) => (
                 <tr key={item.id}>
-                  <td>{item.id}</td>
+                  <td>
+                    <strong className="control-id">{item.id}</strong>
+                  </td>
                   <td>{item.vendor}</td>
                   <td>{item.finding}</td>
                   <td>

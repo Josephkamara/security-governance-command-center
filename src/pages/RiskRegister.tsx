@@ -115,6 +115,7 @@ export default function RiskRegister({ embedded = false }: { embedded?: boolean 
                 <th>Current</th>
                 <th>Target</th>
                 <th>Trend</th>
+                <th>Owner</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -126,6 +127,7 @@ export default function RiskRegister({ embedded = false }: { embedded?: boolean 
                   <td>{kri.value}</td>
                   <td>{kri.target}</td>
                   <td>{kri.trendLabel}</td>
+                  <td>{kri.owner}</td>
                   <td>
                     <StatusBadge label={kri.status} tone={kri.status} />
                   </td>

@@ -41,13 +41,13 @@ Primary nav:
 
 | Route | Screen | Contents |
 | --- | --- | --- |
-| `/#/` | Overview | Hero line, tour button, coverage strip, four cards |
-| `/#/dashboard` | Leadership dashboard | Status, decisions, indicators, stakeholder map, collapsible thresholds and register |
-| `/#/controls` | Controls & testing | One control mapped across six frameworks, plus SOX testing |
-| `/#/vendor-risk` | Vendors | 4-tier model, inherent-risk calculator, intake, SOC checklist |
+| `/#/` | Overview | Hero line, tour button, four cards, coverage strip, evidence-automation teaser |
+| `/#/dashboard` | Leadership dashboard | Status, one decision, six vital indicators, stakeholder map, collapsible extras |
+| `/#/controls` | Controls & testing | Control-to-evidence trace, one control mapped across six frameworks, SOX testing |
+| `/#/vendor-risk` | Vendors | 4-tier model, inherent-risk calculator with a plain-language recommendation |
 | `/#/client-trust` | Client questionnaires | SIG / HECVAT library, SLA tracker, intake |
 | `/#/enterprise-standards` | Enterprise standards | Forum charter, RACI, standards crosswalk |
-| `/#/about` | About | Background and first-90-days roadmap |
+| `/#/about` | About | Background, evidence-automation concept, first-90-days roadmap |
 
 Older routes still resolve: `/#/sox` opens Controls & testing on the SOX tab, `/#/risk-register` opens the dashboard register, `/#/parent-alignment` redirects to Enterprise standards, `/#/30-60-90` stays available from About.
 
@@ -60,15 +60,15 @@ Older routes still resolve: `/#/sox` opens Controls & testing on the SOX tab, `/
 
 ## Module walkthrough
 
-**Leadership dashboard.** A one-line status computed from the sample indicators, the decision that needs a call, then the tiles. Thresholds and the full register sit in expanders.
+**Leadership dashboard.** A one-line status computed from six vital indicators, one crisp decision, then tiles with target, trend, and owner. Extra indicators, thresholds, and the register sit in expanders. Print yields a one-page leadership summary.
 
-**Controls & testing.** A searchable matrix that maps one owner and one evidence set across SOX ITGC, SOC 2, the HIPAA Security Rule, NIST CSF 2.0, ISO 27001:2022, and public HITRUST numbering, plus the SOX exception path.
+**Controls & testing.** A searchable matrix that maps one owner and one evidence set across SOX ITGC, SOC 2, the HIPAA Security Rule, NIST CSF 2.0, ISO 27001:2022, and public HITRUST numbering, plus the SOX exception path and a control-to-evidence trace.
 
-**Vendors.** A four-tier model with an inherent-risk calculator, a seven-step intake, a SOC report checklist that includes bridge letters and CUECs, and a remediation list.
+**Vendors.** A four-tier model with an inherent-risk calculator that ends in a plain-language recommendation: tier, review depth, reassessment cadence, and next step.
 
 **Client security questionnaires.** A SIG / HECVAT-style answer library tied to controls, plus a turnaround SLA tracker and a due-diligence intake queue.
 
-**About.** Background on Joseph Kamara and secondary links to enterprise standards alignment and the first-90-days roadmap.
+**About.** Background on Joseph Kamara, an illustrative evidence-automation concept, and secondary links to enterprise standards alignment and the first-90-days roadmap.
 
 ## Screenshots
 
@@ -96,4 +96,5 @@ Illustrative sample screens from a local run. Open the live app for the interact
 ## Author
 
 Joseph Kamara, CPA, CISA, CISSP  
+[github.com/Josephkamara/security-governance-command-center](https://github.com/Josephkamara/security-governance-command-center)  
 [linkedin.com/in/joseph-kamara](https://www.linkedin.com/in/joseph-kamara)

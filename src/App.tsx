@@ -1,6 +1,7 @@
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import TourBar from './components/TourBar';
+import { LINKEDIN_URL, REPO_URL } from './data/contacts';
 import './App.css';
 import About from './pages/About';
 import ClientSecurityTrustCenter from './pages/ClientSecurityTrustCenter';
@@ -37,7 +38,14 @@ function Workspace() {
       <footer className="site-footer no-print">
         <p>
           Security Governance Command Center · Prepared by Joseph Kamara · Illustrative fictional sample data ·
-          Public frameworks only
+          Public frameworks only ·{' '}
+          <a href={REPO_URL} target="_blank" rel="noreferrer">
+            GitHub
+          </a>{' '}
+          ·{' '}
+          <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
         </p>
       </footer>
     </div>

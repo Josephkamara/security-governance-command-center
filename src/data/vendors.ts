@@ -1,4 +1,4 @@
-import type { Vendor, VendorFinding } from '../types';
+import type { Vendor, VendorFinding, VendorRecommendation, VendorTierId } from '../types';
 
 export const vendorTiers = [
   {
@@ -286,9 +286,88 @@ export const riskQuestions = [
   },
 ];
 
-export function tierFromScore(score: number): 1 | 2 | 3 | 4 {
+export function tierFromScore(score: number): VendorTierId {
   if (score >= 16) return 1;
   if (score >= 10) return 2;
   if (score >= 5) return 3;
   return 4;
+}
+
+const tierCopy: Record<
+  VendorTierId,
+  { name: string; reviewDepth: string; frequency: string; nextStep: string }
+> = {
+  1: {
+    name: 'Critical',
+    reviewDepth:
+      'SOC 2 Type II or HITRUST, a full questionnaire, a signed BAA, a pen-test summary, and security-rating monitoring.',
+    frequency: 'Yearly, and again on any major service or location change.',
+    nextStep:
+      'Collect the current SOC 2 Type II (or HITRUST), map CUECs, confirm the BAA, and schedule a dated review before go-live or before year-end opinions.',
+  },
+  2: {
+    name: 'High',
+    reviewDepth:
+      'SOC 2 Type II preferred; otherwise a SIG Lite or focused questionnaire, a BAA if PHI is in scope, and a rating check.',
+    frequency: 'Every two years, with a light yearly check.',
+    nextStep:
+      'Request the SOC 2 Type II or SIG Lite package and confirm whether a BAA is required before approval.',
+  },
+  3: {
+    name: 'Moderate',
+    reviewDepth: 'A short questionnaire and a security-rating check. No onsite review.',
+    frequency: 'Every three years.',
+    nextStep: 'Send the short questionnaire, record the rating, and file the package before approval.',
+  },
+  4: {
+    name: 'Low',
+    reviewDepth: 'Intake attestation only. No questionnaire, SOC report, or onsite review.',
+    frequency: 'At contract renewal.',
+    nextStep: 'File the attestation and proceed on standard security terms.',
+  },
+};
+
+const floorRules: { id: string; score: number; floor: VendorTierId; reason: string }[] = [
+  { id: 'q1', score: 5, floor: 1, reason: 'PHI at scale cannot sit below Tier 1' },
+  { id: 'q1', score: 2, floor: 2, reason: 'Limited PHI cannot sit below Tier 2' },
+  { id: 'q2', score: 4, floor: 2, reason: 'Card or bank data in scope cannot sit below Tier 2' },
+  { id: 'q3', score: 4, floor: 2, reason: 'Privileged or network access cannot sit below Tier 2' },
+  { id: 'q4', score: 4, floor: 2, reason: 'A hard-to-replace client-facing service cannot sit below Tier 2' },
+  { id: 'q6', score: 3, floor: 2, reason: 'AI on client data cannot sit below Tier 2' },
+];
+
+export function recommendVendor(scores: Record<string, number>): VendorRecommendation {
+  const score = Object.values(scores).reduce((sum, value) => sum + value, 0);
+  const scoreTier = tierFromScore(score);
+  let tier = scoreTier;
+  const floors: string[] = [];
+
+  for (const rule of floorRules) {
+    if (scores[rule.id] === rule.score && rule.floor < tier) {
+      tier = rule.floor;
+      floors.push(rule.reason);
+    }
+  }
+
+  if (scores.q5 === 3 && scores.q1 >= 2 && tier > 2) {
+    tier = 2;
+    floors.push('Offshore or unknown subcontracting plus any PHI cannot sit below Tier 2');
+  }
+
+  const copy = tierCopy[tier];
+  const floorNote = floors.length
+    ? ` Score ${score} would have been Tier ${scoreTier}; ${floors.join('; ')}.`
+    : '';
+
+  return {
+    score,
+    scoreTier,
+    tier,
+    name: copy.name,
+    floors,
+    reviewDepth: copy.reviewDepth,
+    frequency: copy.frequency,
+    nextStep: copy.nextStep,
+    summary: `Treat this as Tier ${tier} ${copy.name}.${floorNote} Review depth: ${copy.reviewDepth} Reassess ${copy.frequency} Next step: ${copy.nextStep}`,
+  };
 }

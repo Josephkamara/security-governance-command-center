@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { LINKEDIN_URL, REPO_URL } from '../data/contacts';
 import dashShot from '../../docs/screenshots/01-dashboard.png';
 import controlsShot from '../../docs/screenshots/02-controls.png';
 import trustShot from '../../docs/screenshots/04-client-trust.png';
@@ -18,28 +19,28 @@ const cards = [
   {
     to: '/dashboard?tour=1',
     title: 'Leadership dashboard',
-    verb: 'See the status line and the one decision.',
+    verb: 'Status, one decision, six indicators.',
     shot: dashShot,
     alt: 'Sample leadership dashboard',
   },
   {
     to: '/controls?tour=2',
     title: 'One control, many frameworks',
-    verb: 'See how one test answers six frameworks.',
+    verb: 'One test answers six frameworks.',
     shot: controlsShot,
     alt: 'Control mapped across six frameworks',
   },
   {
     to: '/vendor-risk?tour=3',
     title: 'Vendors',
-    verb: 'See how the tier, not the brand name, sets the work.',
+    verb: 'The tier, not the brand, sets the work.',
     shot: vendorShot,
     alt: 'Vendor tier model',
   },
   {
     to: '/client-trust',
     title: 'Client security questionnaires',
-    verb: 'See how standard answers stay fast and consistent.',
+    verb: 'Standard answers stay fast and consistent.',
     shot: trustShot,
     alt: 'Client questionnaire library',
   },
@@ -52,17 +53,16 @@ export default function Landing() {
         Skip to content
       </a>
       <header className="landing-header">
-        <h1>Joseph Kamara, CPA, CISA, CISSP</h1>
-        <p>SECURITY GOVERNANCE PORTFOLIO</p>
+        <div className="landing-brand">
+          <h1>Joseph Kamara, CPA, CISA, CISSP</h1>
+          <p>SECURITY GOVERNANCE PORTFOLIO</p>
+        </div>
         <nav>
-          <a href="https://github.com/Josephkamara" target="_blank" rel="noreferrer">
+          <a href={REPO_URL} target="_blank" rel="noreferrer">
             GitHub
           </a>
-          <a href="https://www.linkedin.com/in/joseph-kamara" target="_blank" rel="noreferrer">
+          <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">
             LinkedIn
-          </a>
-          <a href="https://josefkamara.com" target="_blank" rel="noreferrer">
-            josefkamara.com
           </a>
         </nav>
       </header>
@@ -72,29 +72,17 @@ export default function Landing() {
           <p className="page-kicker">Security Governance Command Center</p>
           <h2 className="landing-value">One control set, one risk register, one page for leadership</h2>
           <p className="landing-sub">
-            Illustrative fictional sample data · Public frameworks only. Designed to sit on top of existing GRC
-            and TPRM tools.
+            A sample operating model for a healthcare security program. Map to enterprise standards first. Test
+            once. Reuse the evidence. Sit on the GRC and TPRM tools already in place.
           </p>
-          <p>
+          <p className="landing-actions">
             <Link className="btn btn-primary landing-tour-btn" to="/dashboard?tour=1">
               Start the 3-minute tour
             </Link>
+            <Link className="landing-secondary" to="/dashboard">
+              Open the dashboard
+            </Link>
           </p>
-        </section>
-
-        <section className="landing-coverage" aria-label="Coverage">
-          <h3>Coverage</h3>
-          <p>Six areas. Each one has a working screen.</p>
-          <ul>
-            {coverage.map((item) => (
-              <li key={item.area}>
-                <Link to={item.to}>
-                  <strong>{item.area}</strong>
-                  <span>{item.page}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
         </section>
 
         <div className="landing-door-grid">
@@ -111,6 +99,34 @@ export default function Landing() {
             </article>
           ))}
         </div>
+
+        <section className="landing-coverage" aria-label="Coverage">
+          <h3>Coverage</h3>
+          <p>Six operating areas. Each one has a working screen.</p>
+          <ul>
+            {coverage.map((item) => (
+              <li key={item.area}>
+                <Link to={item.to}>
+                  <strong>{item.area}</strong>
+                  <span>{item.page}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="landing-card landing-featured" id="evidence-teaser">
+          <p className="landing-type">Ongoing interest</p>
+          <h3>Evidence automation</h3>
+          <p>
+            An illustrative concept: pull access reviews, configuration snapshots, and logs through APIs into a
+            timestamped evidence locker, mapped to the control those artifacts prove. Automation collects. A
+            reviewer still judges.
+          </p>
+          <p>
+            <Link to="/about?view=evidence">See the sample evidence record →</Link>
+          </p>
+        </section>
 
         <p className="landing-fictional">
           Fictional scenario. Organization names, people, and data are invented for demonstration.
@@ -160,16 +176,12 @@ export default function Landing() {
 
       <footer className="landing-footer">
         Joseph Kamara, CPA, CISA, CISSP ·{' '}
-        <a href="https://github.com/Josephkamara" target="_blank" rel="noreferrer">
+        <a href={REPO_URL} target="_blank" rel="noreferrer">
           GitHub
         </a>{' '}
         ·{' '}
-        <a href="https://www.linkedin.com/in/joseph-kamara" target="_blank" rel="noreferrer">
+        <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">
           LinkedIn
-        </a>{' '}
-        ·{' '}
-        <a href="https://josefkamara.com" target="_blank" rel="noreferrer">
-          josefkamara.com
         </a>
       </footer>
     </div>

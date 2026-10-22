@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import SampleBanner from '../components/SampleBanner';
 import { controls } from '../data/controls';
@@ -14,7 +14,7 @@ export default function ControlsAndTesting() {
   const requested = params.get('tab') === 'testing' ? 'testing' : 'matrix';
   const tab: ControlsTab = requested;
   const featured = controls.find((control) => control.id === TOUR_CONTROL_ID);
-  const showTrace = tourStep === '2' && featured;
+  const highlightTrace = tourStep === '2' && featured;
 
   return (
     <article>
@@ -24,10 +24,10 @@ export default function ControlsAndTesting() {
       />
       <SampleBanner />
 
-      {showTrace ? (
-        <section className="card tour-trace">
+      {featured ? (
+        <section className={highlightTrace ? 'card tour-trace is-highlighted' : 'card tour-trace'}>
           <div className="card-header">
-            <h2>One control, traced</h2>
+            <h2>Control-to-evidence trace</h2>
             <p className="pill">{featured.id}</p>
           </div>
           <h3>{featured.title}</h3>
@@ -62,8 +62,9 @@ export default function ControlsAndTesting() {
             </div>
           </dl>
           <p>
-            This control feeds the MFA coverage indicator on the dashboard. Exception EX-04 follows it through
-            Scope, Impact, Evidence, Communicate, Close on the SOX testing tab.
+            One export answers six citations. The same pull can land in an evidence locker as record
+            EVD-A05-20261001-0612. See the{' '}
+            <Link to="/about?view=evidence">illustrative evidence-automation concept</Link>.
           </p>
         </section>
       ) : null}
