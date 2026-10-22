@@ -48,8 +48,7 @@ export default function Dashboard() {
         title="Leadership dashboard"
         lede={
           <>
-            {onTarget} of {dashboardKris.length} indicators on target; {decisionCount}{' '}
-            {decisionCount === 1 ? 'decision' : 'decisions'} needed. Numbers below are{' '}
+            Numbers below are{' '}
             <Term
               term="KRIs"
               definition="Key risk indicators: a short list of numbers watched against a target, with a trend."
@@ -58,12 +57,12 @@ export default function Dashboard() {
           </>
         }
       />
-      <SampleBanner />
 
       <p className="status-line" role="status">
         {onTarget} of {dashboardKris.length} indicators on target; {decisionCount}{' '}
         {decisionCount === 1 ? 'decision' : 'decisions'} needed.
       </p>
+      <SampleBanner />
 
       <section className="card">
         <div className="card-header">
