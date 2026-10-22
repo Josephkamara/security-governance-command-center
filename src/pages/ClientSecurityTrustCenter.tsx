@@ -3,6 +3,7 @@ import PageHeader from '../components/PageHeader';
 import SampleBanner from '../components/SampleBanner';
 import Section from '../components/Section';
 import StatusBadge from '../components/StatusBadge';
+import Term from '../components/Term';
 import {
   clientRequests,
   diligenceIntakes,
@@ -30,8 +31,23 @@ export default function ClientSecurityTrustCenter() {
   return (
     <article>
       <PageHeader
-        title="Client security trust center"
-        lede="Clients and prospects get fast, accurate, consistent security answers. Sales sees security as a reason clients say yes. One mailbox, a reviewed library, and a visible SLA."
+        title="Client security questionnaires"
+        lede={
+          <>
+            Clients and prospects get fast, accurate, consistent security answers. The library is built for{' '}
+            <Term
+              term="SIG"
+              definition="Standard Information Gathering: a shared vendor-security questionnaire used by many buyers."
+            />{' '}
+            (Standard Information Gathering) and{' '}
+            <Term
+              term="HECVAT"
+              definition="Higher Education Community Vendor Assessment Toolkit: a questionnaire used by colleges and health systems."
+            />{' '}
+            (Higher Education Community Vendor Assessment Toolkit). One mailbox, a reviewed library, and a
+            visible SLA.
+          </>
+        }
       />
       <SampleBanner />
 
@@ -66,7 +82,7 @@ export default function ClientSecurityTrustCenter() {
 
       {tab === 'library' ? (
         <Section
-          title="SIG Lite and HECVAT-style answer library"
+          title="Standard questionnaire answer library"
           validate="Every live answer must be tied to a control, an owner, an NDA flag, and a review date. We never overstate a control."
         >
           <label>

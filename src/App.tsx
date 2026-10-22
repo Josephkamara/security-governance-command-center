@@ -1,15 +1,14 @@
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Navigation from './components/Navigation';
+import TourBar from './components/TourBar';
 import './App.css';
 import About from './pages/About';
 import ClientSecurityTrustCenter from './pages/ClientSecurityTrustCenter';
+import ControlsAndTesting from './pages/ControlsAndTesting';
 import Dashboard from './pages/Dashboard';
 import Landing from './pages/Landing';
-import ParentEnterpriseAlignment from './pages/ParentEnterpriseAlignment';
-import RiskRegister from './pages/RiskRegister';
-import SOXITGCTracker from './pages/SOXITGCTracker';
+import EnterpriseAlignment from './pages/EnterpriseAlignment';
 import ThirtyPlan from './pages/ThirtyPlan';
-import UnifiedControlFramework from './pages/UnifiedControlFramework';
 import VendorRisk from './pages/VendorRisk';
 
 function Workspace() {
@@ -20,14 +19,15 @@ function Workspace() {
       </a>
       <Navigation />
       <main id="main" className="main">
+        <TourBar />
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/controls" element={<UnifiedControlFramework />} />
-          <Route path="/sox" element={<SOXITGCTracker />} />
+          <Route path="/controls" element={<ControlsAndTesting />} />
+          <Route path="/sox" element={<Navigate to="/controls?tab=testing" replace />} />
           <Route path="/client-trust" element={<ClientSecurityTrustCenter />} />
           <Route path="/vendor-risk" element={<VendorRisk />} />
-          <Route path="/risk-register" element={<RiskRegister />} />
-          <Route path="/parent-alignment" element={<ParentEnterpriseAlignment />} />
+          <Route path="/risk-register" element={<Navigate to="/dashboard#register" replace />} />
+          <Route path="/parent-alignment" element={<EnterpriseAlignment />} />
           <Route path="/30-60-90" element={<ThirtyPlan />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />

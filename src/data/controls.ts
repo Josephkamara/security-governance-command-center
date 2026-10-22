@@ -216,7 +216,7 @@ export const controls: Control[] = [
 ];
 
 export const frameworkNotes = [
-  'SOX ITGC applies only to systems in scope for the parent financial statements.',
+  'SOX ITGC applies only to systems in scope for the enterprise financial statements.',
   'HIPAA cites 45 CFR Part 164. The proposed Security Rule update from January 2025 is not final.',
   'SOC 2 references follow the AICPA Trust Services Criteria.',
   'NIST CSF 2.0 IDs follow NIST CSWP 29.',

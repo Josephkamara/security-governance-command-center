@@ -3,7 +3,7 @@ import type { Finding, Kri, Risk } from '../types';
 export const risks: Risk[] = [
   {
     id: 'R-01',
-    title: 'Offshore coding vendor SOC 2 review overdue',
+    title: 'Third-party processing vendor SOC 2 review overdue',
     category: 'Vendor',
     likelihood: 3,
     impact: 4,
@@ -75,7 +75,7 @@ export const risks: Risk[] = [
   },
   {
     id: 'R-07',
-    title: 'Shared parent logging platform change landing in Q4',
+    title: 'Shared logging platform change landing in Q4',
     category: 'Security',
     likelihood: 2,
     impact: 3,
@@ -83,7 +83,7 @@ export const risks: Risk[] = [
     treatment: 'Mitigate',
     status: 'Treating',
     due: '2026-12-01',
-    source: 'Parent Enterprise Security',
+    source: 'Enterprise security',
   },
   {
     id: 'R-08',

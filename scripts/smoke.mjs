@@ -24,16 +24,18 @@ await check('landing heading', async () => {
   const text = await page.$eval('h1', (el) => el.textContent);
   if (!text.includes('Joseph Kamara')) throw new Error(text);
   const html = await page.content();
-  if (!html.includes('healthcare services organization')) {
-    throw new Error('expected healthcare services wording');
+  if (!html.includes('Start the 3-minute tour')) throw new Error('expected tour button');
+  if (!html.includes('One control set, one risk register, one page for leadership')) {
+    throw new Error('expected value statement');
   }
-  if (!html.includes('Judgment call')) throw new Error('expected case-study judgment');
 });
 
 await check('dashboard heading', async () => {
   await page.goto(`${base}/#/dashboard`, { waitUntil: 'networkidle0' });
   const text = await page.$eval('h1', (el) => el.textContent);
-  if (!text.includes('One page for leadership')) throw new Error(text);
+  if (!text.includes('Leadership dashboard')) throw new Error(text);
+  const html = await page.content();
+  if (!html.includes('indicators on target')) throw new Error('expected computed status line');
 });
 
 await check('control search filters to MFA', async () => {
@@ -45,6 +47,7 @@ await check('control search filters to MFA', async () => {
 
 await check('SOX exception selection', async () => {
   await page.goto(`${base}/#/sox`, { waitUntil: 'networkidle0' });
+  await page.waitForSelector('.select-list button');
   const buttons = await page.$$('.select-list button');
   await buttons[1].click();
   const body = await page.$eval('.workflow', (el) => el.textContent);
@@ -62,7 +65,6 @@ await check('trust center SLA tab', async () => {
 await check('vendor scorer moves to Tier 1', async () => {
   await page.goto(`${base}/#/vendor-risk`, { waitUntil: 'networkidle0' });
   const radios = await page.$$('input[type="radio"]');
-  // pick the highest-score option in each fieldset (last radio of each group)
   for (const index of [2, 5, 8, 11, 14, 17]) {
     await radios[index].click();
   }
@@ -75,11 +77,11 @@ await check('about uses Joseph', async () => {
   const text = await page.$eval('h1', (el) => el.textContent);
   if (!text.includes('Joseph Kamara')) throw new Error(text);
   const html = await page.content();
-  if (!html.includes('Parent Enterprise Security')) {
-    throw new Error('expected parent-enterprise wording');
+  if (!html.includes('enterprise standards')) {
+    throw new Error('expected enterprise-standards wording');
   }
-  if (!html.includes('healthcare services organization')) {
-    throw new Error('expected healthcare services wording');
+  if (!html.includes('First-90-days roadmap')) {
+    throw new Error('expected roadmap link');
   }
 });
 

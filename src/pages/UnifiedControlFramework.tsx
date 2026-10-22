@@ -8,7 +8,7 @@ import type { ControlStatus } from '../types';
 
 const frameworks = ['All', 'SOX', 'SOC 2', 'HIPAA', 'NIST CSF 2.0', 'ISO 27001', 'HITRUST'] as const;
 
-export default function UnifiedControlFramework() {
+export default function UnifiedControlFramework({ embedded = false }: { embedded?: boolean }) {
   const [query, setQuery] = useState('');
   const [framework, setFramework] = useState<(typeof frameworks)[number]>('All');
   const [status, setStatus] = useState<'All' | ControlStatus>('All');
@@ -43,17 +43,11 @@ export default function UnifiedControlFramework() {
     });
   }, [framework, query, status]);
 
-  return (
-    <article>
-      <PageHeader
-        title="Unified control framework"
-        lede="One control set. Each row has one owner and one evidence set that answers SOX ITGC, SOC 2, the HIPAA Security Rule, NIST CSF 2.0, ISO 27001:2022, and HITRUST. Test once. Map many times."
-      />
-      <SampleBanner />
-
+  const body = (
+    <>
       <Section
         title="How the matrix works"
-        validate="Parent standards come first. Local extras exist only where a client contract requires more."
+        validate="Enterprise standards come first. Local extras exist only where a client contract requires more."
       >
         <div className="stat-row">
           <div className="stat">
@@ -159,7 +153,7 @@ export default function UnifiedControlFramework() {
 
       <Section
         title="Citation notes"
-        validate="Counsel and Parent Enterprise Security should confirm which citations are in force for this organization."
+        validate="Counsel and enterprise security should confirm which citations are in force for this organization."
       >
         <ul className="plain-list">
           {frameworkNotes.map((note) => (
@@ -167,6 +161,19 @@ export default function UnifiedControlFramework() {
           ))}
         </ul>
       </Section>
+    </>
+  );
+
+  if (embedded) return body;
+
+  return (
+    <article>
+      <PageHeader
+        title="One control, many frameworks"
+        lede="One control set. Each row has one owner and one evidence set that answers SOX ITGC, SOC 2, the HIPAA Security Rule, NIST CSF 2.0, ISO 27001:2022, and HITRUST. Test once. Map many times."
+      />
+      <SampleBanner />
+      {body}
     </article>
   );
 }

@@ -3,18 +3,18 @@ import PageHeader from '../components/PageHeader';
 import SampleBanner from '../components/SampleBanner';
 import Section from '../components/Section';
 
-export default function ParentEnterpriseAlignment() {
+export default function EnterpriseAlignment() {
   return (
     <article>
       <PageHeader
-        title="Parent-enterprise alignment"
-        lede="The local organization does not run a second security program. It runs an operating layer that adopts Parent Enterprise Security standards, adds only what client contracts require, and makes risk decisions at the right level."
+        title="Enterprise standards alignment"
+        lede="The local organization does not run a second security program. It runs an operating layer that adopts enterprise standards, adds only what client contracts require, and makes risk decisions at the right level."
       />
       <SampleBanner />
 
       <Section
         title="Governance forum charter"
-        validate="Chair, membership, and decision rights should be agreed with Parent Enterprise Security and the executive sponsor before the first meeting is booked."
+        validate="Chair, membership, and decision rights should be agreed with enterprise security and the executive sponsor before the first meeting is booked."
       >
         <dl className="detail-list">
           <div>
@@ -60,11 +60,11 @@ export default function ParentEnterpriseAlignment() {
               <tr>
                 <th>Activity</th>
                 <th>Local security lead</th>
-                <th>Parent Enterprise Security</th>
+                <th>Enterprise security</th>
                 <th>Control owners</th>
                 <th>Legal and Privacy</th>
                 <th>Sales and Client Services</th>
-                <th>Parent IA / SOX</th>
+                <th>Internal audit / SOX</th>
               </tr>
             </thead>
             <tbody>
@@ -72,11 +72,11 @@ export default function ParentEnterpriseAlignment() {
                 <tr key={row.activity}>
                   <td>{row.activity}</td>
                   <td>{row.cyberMgr}</td>
-                  <td>{row.parentSec}</td>
+                  <td>{row.enterpriseSec}</td>
                   <td>{row.controlOwners}</td>
                   <td>{row.legalPrivacy}</td>
                   <td>{row.salesClient}</td>
-                  <td>{row.parentAudit}</td>
+                  <td>{row.iaSox}</td>
                 </tr>
               ))}
             </tbody>
@@ -86,14 +86,14 @@ export default function ParentEnterpriseAlignment() {
 
       <Section
         title="Standards crosswalk"
-        validate="This is a sample gap list. The real crosswalk starts with the parent policy set and the contract addenda Legal already holds."
+        validate="This is a sample gap list. The real crosswalk starts with the enterprise policy set and the contract addenda Legal already holds."
       >
         <div className="table-wrap">
           <table>
             <thead>
               <tr>
                 <th>Topic</th>
-                <th>Parent standard</th>
+                <th>Enterprise standard</th>
                 <th>Local need</th>
                 <th>Illustrative gap</th>
                 <th>Proposed action</th>
@@ -105,7 +105,7 @@ export default function ParentEnterpriseAlignment() {
                   <td>
                     <strong>{row.topic}</strong>
                   </td>
-                  <td>{row.parentStandard}</td>
+                  <td>{row.enterpriseStandard}</td>
                   <td>{row.localNeed}</td>
                   <td>{row.gap}</td>
                   <td>{row.action}</td>

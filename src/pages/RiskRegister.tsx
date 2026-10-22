@@ -14,18 +14,12 @@ function cellTone(likelihood: number, impact: number): 'green' | 'amber' | 'red'
   return 'green';
 }
 
-export default function RiskRegister() {
-  return (
-    <article>
-      <PageHeader
-        title="Risk register"
-        lede="Security, vendor, and client risks in one place. Each item has a likelihood times impact score, an owner, a treatment decision, and a date. Findings stay visible until they close."
-      />
-      <SampleBanner />
-
+export default function RiskRegister({ embedded = false }: { embedded?: boolean }) {
+  const body = (
+    <>
       <Section
         title="Likelihood times impact heatmap"
-        validate="Scoring scales should match parent risk methodology so a 12 here means the same thing in the enterprise register."
+        validate="Scoring scales should match the enterprise risk methodology so a 12 here means the same thing in the shared register."
       >
         <div className="heatmap-wrap">
           <table className="heatmap" aria-label="Risk heatmap">
@@ -181,6 +175,19 @@ export default function RiskRegister() {
           </table>
         </div>
       </Section>
+    </>
+  );
+
+  if (embedded) return body;
+
+  return (
+    <article>
+      <PageHeader
+        title="Risk register"
+        lede="Security, vendor, and client risks in one place. Each item has a likelihood times impact score, an owner, a treatment decision, and a date. Findings stay visible until they close."
+      />
+      <SampleBanner />
+      {body}
     </article>
   );
 }

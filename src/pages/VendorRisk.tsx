@@ -3,6 +3,7 @@ import PageHeader from '../components/PageHeader';
 import SampleBanner from '../components/SampleBanner';
 import Section from '../components/Section';
 import StatusBadge from '../components/StatusBadge';
+import Term from '../components/Term';
 import {
   intakeSteps,
   riskQuestions,
@@ -30,14 +31,25 @@ export default function VendorRisk() {
   return (
     <article>
       <PageHeader
-        title="Vendor risk"
-        lede="A four-tier model, a ten-minute inherent risk score, a seven-step intake, a SOC report checklist that includes bridge letters and CUECs, and a remediation tracker. The tier, not the brand name, sets the work."
+        title="Vendors"
+        lede={
+          <>
+            A four-tier model, a ten-minute inherent risk score, a seven-step intake, a SOC report checklist
+            that includes bridge letters and{' '}
+            <Term
+              term="CUECs"
+              definition="Complementary user entity controls: the buyer’s own controls that a vendor SOC report relies on."
+            />{' '}
+            (complementary user entity controls), and a remediation tracker. The tier, not the brand name, sets
+            the work.
+          </>
+        }
       />
       <SampleBanner />
 
       <Section
         title="Four-tier model"
-        validate="Typical healthcare examples and diligence packages should be confirmed against the parent TPRM standard."
+        validate="Typical healthcare examples and diligence packages should be confirmed against the enterprise TPRM standard."
       >
         <div className="table-wrap">
           <table>
@@ -71,7 +83,7 @@ export default function VendorRisk() {
 
       <Section
         title="Inherent risk scoring calculator"
-        validate="Question weights and cut scores should match parent scoring if a TPRM tool already exists. Do not stand up a second system."
+        validate="Question weights and cut scores should match enterprise scoring if a TPRM tool already exists. Do not stand up a second system."
       >
         <div className="split">
           <form className="score-form" onSubmit={(event) => event.preventDefault()}>
@@ -122,7 +134,7 @@ export default function VendorRisk() {
 
       <Section
         title="SOC report review checklist"
-        validate="Bridge-letter timing and CUEC mapping should follow the parent SOX playbook."
+        validate="Bridge-letter timing and CUEC mapping should follow the enterprise SOX playbook."
       >
         <ol className="plain-list">
           {socChecklist.map((item) => (

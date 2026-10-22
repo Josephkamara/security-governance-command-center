@@ -18,7 +18,7 @@ export const libraryAnswers: LibraryAnswer[] = [
     question: 'Can you share a SOC 2 Type II report?',
     source: 'HECVAT',
     answer:
-      'Yes. The current SOC 2 Type II report is available under NDA. Scope, period, and exceptions are summarized in the trust package. Parent-owned shared services are covered by the parent report where applicable.',
+      'Yes. The current SOC 2 Type II report is available under NDA. Scope, period, and exceptions are summarized in the trust package. Shared services are covered by the enterprise report where applicable.',
     controlId: 'All',
     evidence: 'Current report under NDA',
     reviewCadence: 'Each report',
@@ -78,7 +78,7 @@ export const libraryAnswers: LibraryAnswer[] = [
     question: 'Is ePHI encrypted at rest and in transit?',
     source: 'SIG Lite',
     answer:
-      'Yes. Production PHI stores use approved encryption at rest. Transit uses TLS with a managed certificate inventory. Key management follows parent standards where the platform is shared.',
+      'Yes. Production PHI stores use approved encryption at rest. Transit uses TLS with a managed certificate inventory. Key management follows enterprise standards where the platform is shared.',
     controlId: 'A-10',
     evidence: 'Config exports and certificate inventory',
     reviewCadence: '6 months',
@@ -102,7 +102,7 @@ export const libraryAnswers: LibraryAnswer[] = [
     question: 'Can we review your latest penetration test summary?',
     source: 'HECVAT',
     answer:
-      'A summary letter is available under NDA. Full reports stay with Parent Enterprise Security and are shared on a need-to-know basis. High findings are tracked to closure in the risk register.',
+      'A summary letter is available under NDA. Full reports stay with enterprise security and are shared on a need-to-know basis. High findings are tracked to closure in the risk register.',
     controlId: 'A-09',
     evidence: 'Pen test summary letter',
     reviewCadence: 'Yearly',

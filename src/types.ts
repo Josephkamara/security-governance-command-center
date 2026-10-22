@@ -148,16 +148,16 @@ export interface Kri {
 export interface RaciRow {
   activity: string;
   cyberMgr: string;
-  parentSec: string;
+  enterpriseSec: string;
   controlOwners: string;
   legalPrivacy: string;
   salesClient: string;
-  parentAudit: string;
+  iaSox: string;
 }
 
 export interface CrosswalkRow {
   topic: string;
-  parentStandard: string;
+  enterpriseStandard: string;
   localNeed: string;
   gap: string;
   action: string;

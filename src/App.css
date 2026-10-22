@@ -140,6 +140,146 @@
   text-wrap: wrap;
 }
 
+.status-line {
+  margin: 0 0 24px;
+  padding: 14px 18px;
+  background: var(--teal-soft);
+  border-left: 4px solid var(--teal);
+  border-radius: var(--radius);
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.tour-bar {
+  background: var(--teal-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 24px;
+}
+
+.tour-bar-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  color: var(--teal);
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.tour-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+}
+
+.tour-steps a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.tour-steps .is-current a,
+.tour-steps .is-done a {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.tour-bar-prompt {
+  margin: 0 0 12px;
+}
+
+.tour-bar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.tour-exit {
+  margin-left: auto;
+}
+
+.tour-trace .trace-map,
+.trace-map {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px 16px;
+  margin: 12px 0;
+}
+
+.trace-map dt {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.trace-map dd {
+  margin: 0;
+}
+
+.term {
+  position: relative;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  cursor: help;
+  font-weight: 700;
+}
+
+.term-tip {
+  display: none;
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 6px);
+  z-index: 5;
+  width: min(280px, 70vw);
+  padding: 8px 10px;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 400;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  border-radius: 8px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.term:hover .term-tip,
+.term:focus .term-tip,
+.term:focus-visible .term-tip {
+  display: block;
+}
+
+.expander {
+  padding: 16px 18px;
+}
+
+.expander summary {
+  cursor: pointer;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.expander[open] summary {
+  margin-bottom: 12px;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: var(--navy);
+  border: 1px solid var(--line);
+}
+
+.btn-secondary.is-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .sample-banner,
 .card,
 .library-card,

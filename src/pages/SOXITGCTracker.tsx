@@ -6,21 +6,15 @@ import StatusBadge from '../components/StatusBadge';
 import { exceptionStages, soxCycles, soxExceptions, soxTests } from '../data/sox';
 import type { SoxException } from '../types';
 
-export default function SOXITGCTracker() {
+export default function SOXITGCTracker({ embedded = false }: { embedded?: boolean }) {
   const [selectedId, setSelectedId] = useState(soxExceptions[0]?.id ?? '');
   const selected = soxExceptions.find((item) => item.id === selectedId) ?? soxExceptions[0];
 
-  return (
-    <article>
-      <PageHeader
-        title="SOX ITGC tracker"
-        lede="A test cycle with evidence requests, exceptions, and remediation through closure. Find our own issues before the external auditor does. Then walk each exception through Scope, Impact, Evidence, Communicate, Close."
-      />
-      <SampleBanner />
-
+  const body = (
+    <>
       <Section
         title="Test cycle"
-        validate="The live calendar, populations, and tester names sit with Parent Enterprise Security and local application owners."
+        validate="The live calendar, populations, and tester names sit with enterprise security and local application owners."
       >
         <div className="chip-row">
           {soxCycles.map((cycle) => (
@@ -72,7 +66,7 @@ export default function SOXITGCTracker() {
 
       <Section
         title="Exception workflow"
-        validate="Severity language should match the parent deficiency rating scale before any item is labeled significant."
+        validate="Severity language should match the enterprise deficiency rating scale before any item is labeled significant."
       >
         <div className="split">
           <div>
@@ -97,6 +91,19 @@ export default function SOXITGCTracker() {
           {selected ? <ExceptionDetail exception={selected} /> : null}
         </div>
       </Section>
+    </>
+  );
+
+  if (embedded) return body;
+
+  return (
+    <article>
+      <PageHeader
+        title="SOX testing"
+        lede="A test cycle with evidence requests, exceptions, and remediation through closure. Find our own issues before the external auditor does. Then walk each exception through Scope, Impact, Evidence, Communicate, Close."
+      />
+      <SampleBanner />
+      {body}
     </article>
   );
 }

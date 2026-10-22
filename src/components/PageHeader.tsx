@@ -1,7 +1,9 @@
+import type { ReactNode } from 'react';
+
 interface PageHeaderProps {
   kicker?: string;
   title: string;
-  lede: string;
+  lede: ReactNode;
 }
 
 export default function PageHeader({ kicker = 'Overview', title, lede }: PageHeaderProps) {

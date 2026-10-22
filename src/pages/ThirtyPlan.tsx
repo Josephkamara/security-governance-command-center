@@ -7,14 +7,14 @@ export default function ThirtyPlan() {
   return (
     <article>
       <PageHeader
-        title="30-60-90 day plan"
+        title="First-90-days roadmap"
         lede="The first phase maps tools, ownership, backlog, and the next two quarters of audits. Later phases stand up one intake path, one control set, one risk register, and one page for leadership."
       />
       <SampleBanner />
 
       <Section
         title="The approach in one line"
-        validate="These four principles only work if they fit the tools and standards Parent Enterprise Security already has."
+        validate="These four principles only work if they fit the tools and standards enterprise security already has."
       >
         <div className="principle-grid">
           {principles.map((item) => (

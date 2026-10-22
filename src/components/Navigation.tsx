@@ -2,16 +2,12 @@ import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 const links = [
-  { to: '/', label: 'Overview' },
-  { to: '/dashboard', label: 'Dashboard' },
-  { to: '/controls', label: 'Control framework' },
-  { to: '/sox', label: 'SOX ITGC' },
-  { to: '/client-trust', label: 'Client trust' },
-  { to: '/vendor-risk', label: 'Vendor risk' },
-  { to: '/risk-register', label: 'Risk register' },
-  { to: '/parent-alignment', label: 'Parent alignment' },
-  { to: '/30-60-90', label: '30-60-90 plan' },
-  { to: '/about', label: 'About Joseph' },
+  { to: '/', label: 'Overview', end: true },
+  { to: '/dashboard', label: 'Leadership dashboard' },
+  { to: '/controls', label: 'Controls & testing' },
+  { to: '/vendor-risk', label: 'Vendors' },
+  { to: '/client-trust', label: 'Client security questionnaires' },
+  { to: '/about', label: 'About' },
 ];
 
 export default function Navigation() {
@@ -31,7 +27,7 @@ export default function Navigation() {
           </span>
           <span className="brand-text">
             <span className="brand-title">Security Governance Command Center</span>
-            <span className="brand-sub">Healthcare services organization</span>
+            <span className="brand-sub">Sample operating model</span>
           </span>
         </NavLink>
         <button
@@ -48,7 +44,7 @@ export default function Navigation() {
             <NavLink
               key={link.to}
               to={link.to}
-              end={link.to === '/'}
+              end={Boolean(link.end)}
               className={({ isActive }) => (isActive ? 'nav-link is-active' : 'nav-link')}
               onClick={() => setOpen(false)}
             >
